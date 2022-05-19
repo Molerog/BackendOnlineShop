@@ -1,0 +1,16 @@
+{
+  "name": "backendonlineshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "logplease": "^1.2.15",
+    "nodemon": "^2.0.16"
+  }
+}
