@@ -14,6 +14,8 @@ const app = express();
 const port = 3000;
 app.use(express.json())
 
+app.use('/usuarios', require('./routes/usuario'));
+
 app.listen(port,()=>{
     logger.info("Servidor corriendo en el puerto " + port)
 })
