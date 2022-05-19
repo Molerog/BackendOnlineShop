@@ -10,3 +10,5 @@ const options = {
   };
 const logger = Logger.create('Mensaje',options);
 logger.info("probando")
+
+console.log("holaaaa")
