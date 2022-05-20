@@ -1,4 +1,4 @@
-const { User } = require('../models/index');
+const { User, Order } = require('../models/index');
 
 const UserController = {
   async create(req, res) {
@@ -25,15 +25,15 @@ const UserController = {
   },
   async getUserOrder(req, res) {
     try {
-      const users = await User.findAll({
+      const usersOrders = await User.findAll({
         include: [Order],
       });
-      res.status(201).send({ mensaje: 'Show Users with Orders' });
+      res.status(201).send({ mensaje: 'Show Users with Orders', usersOrders });
     } catch (error) {
       console.log(error);
       res
         .status(500)
-        .send({ mensaje: ' We had a problem lookinf for Users with orders ' });
+        .send({ mensaje: ' We had a problem looking for Users with orders ' });
     }
   },
 };
