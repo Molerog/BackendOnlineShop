@@ -4,7 +4,6 @@ const UserController = {
     async create(req,res) {
     try {
         const user = await User.create({...req.body})
-        req.body.role = "user"
         res.status(201).send({mensaje: "User added...", user})
     } catch (error) {
         console.log(error);
