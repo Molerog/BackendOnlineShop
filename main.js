@@ -15,6 +15,7 @@ const port = 3000;
 app.use(express.json());
 
 app.use('/user', require('./routes/user'));
+app.use('/order', require('./routes/order'));
 
 app.listen(port, () => {
   logger.info('Servidor corriendo en el puerto ' + port);
