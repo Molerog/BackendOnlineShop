@@ -2,15 +2,16 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert ( 'Orders', [
+    return queryInterface.bulkInsert ( 'Reviews', [
       {
-        order_num: 1 ,
-        date: "1987-07-25" ,
         UserId: 1,
+        ProductId: 1,
+        review: "Es una mierda",
+        rating: 4,
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date()   
       }
-    ])   
+    ])
   },
 
   async down (queryInterface, Sequelize) {
