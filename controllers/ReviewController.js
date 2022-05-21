@@ -15,7 +15,7 @@ const ReviewController ={
         },
         async getAllReviews(req, res) {
             try {
-              const allreviews = await Category.findAll();
+              const allreviews = await Review.findAll();
               res.status(201).send({ mensaje: 'Search completed...', allreviews });
             } catch (error) {
               console.log(error);
