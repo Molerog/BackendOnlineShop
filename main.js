@@ -18,6 +18,8 @@ app.use('/users', require('./routes/users'));
 app.use('/orders', require('./routes/orders'));
 app.use('/products', require('./routes/products'));
 app.use('/categories', require('./routes/categories'));
+app.use('/reviews', require('./routes/reviews'));
+
 
 app.listen(port,()=>{
     logger.info("Servidor corriendo en el puerto " + port)
