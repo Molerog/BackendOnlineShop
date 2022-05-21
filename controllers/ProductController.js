@@ -13,13 +13,13 @@ const ProductController = {
         })
     }
     },
-    async getAll(req,res){
+    async getAllProduct(req,res){
         try {
-          const products = await Product.findAll()
-           res.status(201).send({message: 'Search completed...', products})
+          const allproducts = await Product.findAll()
+           res.status(201).send({message: 'Search completed...', allproducts})
         } catch (error) {
             console.log(error)
-            res.status(500).send({message: "We had an issue searching the table..."})
+            res.status(500).send({message: "We had an issue searching the products..."})
         }
     },
 }
