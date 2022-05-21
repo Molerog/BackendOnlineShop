@@ -19,6 +19,8 @@ app.use('/orders', require('./routes/orders'));
 app.use('/products', require('./routes/products'));
 app.use('/categories', require('./routes/categories'));
 app.use('/sections', require('./routes/sections'));
+app.use('/reviews', require('./routes/reviews'));
+
 
 app.listen(port, () => {
   logger.info('Servidor corriendo en el puerto ' + port);
