@@ -1,4 +1,4 @@
-const {Product} = require('../models/index');
+const {Product,Order} = require('../models/index');
 
 const ProductController = {
     async create(req,res) {
@@ -22,6 +22,19 @@ const ProductController = {
             res.status(500).send({message: "We had an issue searching the products..."})
         }
     },
+    async getProductOrder(req, res) {
+        try {
+          const productsOrders = await Product.findAll({
+            include: [Order]
+          });
+          res.status(201).send({ mensaje: 'Show relations', productsOrders });
+        } catch (error) {
+          console.log(error);
+          res
+            .status(500)
+            .send({ mensaje: ' We had a problem looking for relations' });
+        }
+      },
 }
 
 module.exports = ProductController

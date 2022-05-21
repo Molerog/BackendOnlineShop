@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Order.belongsTo(models.User)
+      // Order.belongsToMany(models.Product,{through: 'ordershasproducts'})
     }
   }
   Order.init({
