@@ -9,6 +9,20 @@ module.exports = {
         UserId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+      order_num: 2 ,
+        date: "1999-07-25",
+        UserId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+      order_num:3,
+      date: "2010-07-25",
+      UserId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
       }
     ])   
   },
