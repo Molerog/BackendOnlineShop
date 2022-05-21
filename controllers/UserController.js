@@ -1,4 +1,4 @@
-const {User} = require('../models/index');
+const {User,Order} = require('../models/index');
 
 const UserController = {
     async create(req,res) {
@@ -21,7 +21,20 @@ const UserController = {
             console.log(error)
             res.status(500).send({mensaje: "We had an issue searching the table..."})
         }
-    }
+    },
+    async getUserOrder(req, res) {
+        try {
+          const usersOrders = await User.findAll({
+            include: [Order],
+          });
+          res.status(201).send({ mensaje: 'Show Users with Orders', usersOrders });
+        } catch (error) {
+          console.log(error);
+          res
+            .status(500)
+            .send({ mensaje: ' We had a problem looking for Users with orders ' });
+        }
+      },
 }
 
 module.exports = UserController
