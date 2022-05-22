@@ -125,7 +125,20 @@ const ProductController = {
         } catch (error) {
           res.status(500).send({message: ' We had a problem searching the product...' });
         }
-      }  
+      },
+      async productOrderedByPrice (req, res){
+        try {
+          const orderdedByPrice = await Product.findAll({
+              order:[
+                ['price', 'DESC']
+              ]
+          },
+          );
+          res.status(201).send({message: 'Product ordered by price...', orderdedByPrice})  
+        } catch (error) {
+          res.status(500).send({message: ' We had a problem ordering the product by price...' });
+        }
+      }
 }
 
 module.exports = ProductController
