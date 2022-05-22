@@ -23,7 +23,54 @@ const CategoryController ={
                 .status(500)
                 .send({ mensaje: 'We had a problem looking for all categories' });
             }
+          },
+          async deleteCategory(req,res) {
+            try {
+                await Category.destroy({
+                where:{
+                  id:req.params.id
+                }
+              },
+              );
+              res.status(201).send({message: 'Category has been deleted...'})
+            } catch (error) {
+              console.log(error);
+              res
+                .status(500)
+                .send({ message: ' We had a problem deleting the category...' });
+            }
+          },
+          async updateCategory(req, res) {
+            try {
+              await Category.update({...req.body},
+                {
+                  where: {
+                    id: req.params.id,
+                  }
+                }
+              );
+              res.status(201).send({message: 'Category updated...'})
+            } catch (error) {
+              console.log(error);
+              res
+                .status(500)
+                .send({ message: ' We had a problem updating the category...' });
+            }
+          },
+          async getCategoryById (req, res){
+            try {
+              const categoryById = await Category.findAll({
+                where:{
+                  id: req.params.id
+                }
+              },
+              );
+              res.status(201).send({message: 'Category found...',categoryById})
+            } catch (error) {
+              res.status(500).send({ message: ' We had a problem searching the category...' });
+            }
           }
+
     }
 
     module.exports = CategoryController
