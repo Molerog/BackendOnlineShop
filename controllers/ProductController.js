@@ -86,6 +86,19 @@ const ProductController = {
         } catch (error) {
           res.status(500).send({ message: ' We had a problem searching the products...' });
         }
+      },
+      async getProductById (req, res){
+        try {
+          const productById = await Product.findAll({
+            where:{
+              id: req.params.id
+            }
+          },
+          );
+          res.status(201).send({message: 'Product found...',productById})
+        } catch (error) {
+          res.status(500).send({ message: ' We had a problem searching the product...' });
+        }
       }
 }
 
