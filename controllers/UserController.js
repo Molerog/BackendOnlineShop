@@ -1,5 +1,8 @@
 const {User,Order} = require('../models/index');
 
+//-----> Controlador para tabla "User" <------// 
+
+//-----Creación de Usuarios-----//
 const UserController = {
     async create(req,res) {
     try {
@@ -13,6 +16,7 @@ const UserController = {
         })
     }
     },
+//-----Obtiene todos los usuarios-----//
     async getAll(req,res){
         try {
           const users = await User.findAll()
@@ -22,6 +26,7 @@ const UserController = {
             res.status(500).send({mensaje: "We had an issue searching the table..."})
         }
     },
+//-----Obtiene el usuario y su pedido-----//
     async getUserOrder(req, res) {
         try {
           const usersOrders = await User.findAll({

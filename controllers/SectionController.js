@@ -1,5 +1,8 @@
 const { Section } = require('../models/index');
 
+//-----> Controlador para tabla "Section" <------// 
+
+//-----Creación de sección-----//
 const SectionController = {
   async create(req, res) {
     try {
@@ -12,6 +15,8 @@ const SectionController = {
       });
     }
   },
+
+//-----Obtiene todas las secciones-----//
   async getAllSections(req, res) {
     try {
       const sections = await Section.findAll();

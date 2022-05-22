@@ -1,5 +1,8 @@
 const {Product, Order, Category, Section} = require('../models/index');
 
+//-----> Controlador para tabla "Product" <------// 
+
+//-----Creación de producto-----//
 const ProductController = {
     async create(req,res) {
     try {
@@ -17,6 +20,7 @@ const ProductController = {
         })
     }
     },
+//-----Obtiene todos los productos-----//
     async getAllProduct(req,res){
         try {
           const allproducts = await Product.findAll()
@@ -26,19 +30,22 @@ const ProductController = {
             res.status(500).send({message: "We had an issue searching the products..."})
         }
     },
-    async getProductOrder(req, res) {
-        try {
-          const productsOrders = await Product.findAll({
-            include: [Order]
-          });
-          res.status(201).send({ message: 'Show relations', productsOrders });
-        } catch (error) {
-          console.log(error);
-          res
-            .status(500)
-            .send({ message: ' We had a problem looking for relations' });
-        }
-      },
+//-----Obtiene el producto junto al pedido al que pertenece-----// **A LA ESPERA DE HACER MÁS PRUEBAS**
+    // async getProductOrder(req, res) {
+    //     try {
+    //       const productsOrders = await Product.findAll({
+    //         include: [Order]
+    //       });
+    //       res.status(201).send({ message: 'Show relations', productsOrders });
+    //     } catch (error) {
+    //       console.log(error);
+    //       res
+    //         .status(500)
+    //         .send({ message: ' We had a problem looking for relations' });
+    //     }
+    //   },
+
+//-----Actualiza los productos por ID-----//
       async updateProduct(req, res) {
         try {
           await Product.update({...req.body},
@@ -56,6 +63,7 @@ const ProductController = {
             .send({ message: ' We had a problem updating the product...' });
         }
       },
+//-----Elimina los productos por ID-----//
       async deleteProduct(req,res) {
         try {
             await Product.destroy({
@@ -72,6 +80,7 @@ const ProductController = {
             .send({ message: ' We had a problem deleting the product...' });
         }
       },
+//-----Muestra el producto junto a la categoría y la sección-----//
       async getProductCategorySection(req,res) {
         try {
            const productSectionCategory = await Product.findAll({
@@ -91,6 +100,7 @@ const ProductController = {
           res.status(500).send({ message: ' We had a problem searching the products...' });
         }
       },
+//-----Muestra el producto por ID-----//
       async getProductById (req, res){
         try {
           const productById = await Product.findAll({
@@ -104,6 +114,7 @@ const ProductController = {
           res.status(500).send({ message: ' We had a problem searching the product...' });
         }
       },
+//-----Muestra el producto por Nombre-----//
       async getProductByName (req,res){
         try {
           const ProductByName = await Product.findAll({
@@ -117,6 +128,7 @@ const ProductController = {
           res.status(500).send({message: ' We had a problem searching the product...' });
         }
       },
+//-----Muestra el producto por Precio-----//
       async getProductByPrice (req,res){
         try {
           const ProductByPrice = await Product.findAll({
@@ -130,6 +142,7 @@ const ProductController = {
           res.status(500).send({message: ' We had a problem searching the product...' });
         }
       },
+//-----Ordena de mayor a menor los productos por precio-----//
       async productOrderedByPrice (req, res){
         try {
           const orderdedByPrice = await Product.findAll({

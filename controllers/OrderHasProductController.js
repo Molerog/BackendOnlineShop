@@ -1,5 +1,6 @@
 const {OrderHasProduct,Order,Product} = require('../models/index');
 
+//-----> Controlador para tabla Intermedia <------// 
 
 const OrderHasProductController ={
     async create(req,res) {
