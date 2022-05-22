@@ -6,14 +6,14 @@ module.exports = {
       {
         order_num: 1 ,
         date: "1987-07-25" ,
-        UserId: 1,
+        UserId: 1,        
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
       order_num: 2 ,
         date: "1999-07-25",
-        UserId: 2,
+        UserId: 2  ,      
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -23,7 +23,14 @@ module.exports = {
       UserId: 3,
       createdAt: new Date(),
       updatedAt: new Date()
-      }
+      },
+      {
+        order_num:4,
+        date: "2030-07-25",
+        UserId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+        },
     ])   
   },
 

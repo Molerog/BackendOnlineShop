@@ -35,6 +35,23 @@ const ProductController = {
             .send({ mensaje: ' We had a problem looking for relations' });
         }
       },
+      async updateProduct(req, res) {
+        try {
+          await Product.update({...req.body},
+            {
+              where: {
+                id: req.params.id,
+              }
+            }
+          );
+          res.status(201).send({message: 'Product updated...'})
+        } catch (error) {
+          console.log(error);
+          res
+            .status(500)
+            .send({ mensaje: ' We had a problem updating the product...' });
+        }
+      }
 }
 
 module.exports = ProductController

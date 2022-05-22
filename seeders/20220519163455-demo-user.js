@@ -7,7 +7,7 @@ module.exports = {
         name: 'German',
         surname: 'Molero',
         email:'moltorger@gmail.com',
-        dni: '44886553Y',
+        dni: '44886553Y',        
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -15,7 +15,7 @@ module.exports = {
         name: 'Antonio',
         surname: 'Molero',
         email:'antonio@gmail.com',
-        dni: '33449923Y',
+        dni: '33449923Y',        
         createdAt: new Date(),
         updatedAt: new Date()   
       },
@@ -25,7 +25,8 @@ module.exports = {
       email:'varberao@gmail.com',
       dni: '33434923Y',
       createdAt: new Date(),
-      updatedAt: new Date()   }
+      updatedAt: new Date()
+    }
     ])   
   },
 
