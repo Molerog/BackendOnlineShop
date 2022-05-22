@@ -1,7 +1,6 @@
 {
   "name": "backendonlineshop",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,5 +16,15 @@
     "express": "^4.18.1",
     "mysql2": "^2.3.3",
     "sequelize": "^6.19.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Molerog/BackendOnlineShop.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Molerog/BackendOnlineShop/issues"
+  },
+  "homepage": "https://github.com/Molerog/BackendOnlineShop#readme",
+  "description": ""
 }
