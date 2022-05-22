@@ -3,8 +3,12 @@ const {Product, Order, Category, Section} = require('../models/index');
 const ProductController = {
     async create(req,res) {
     try {
+        if (req.body.product === !null || req.body.price === !null ||req.body.SectionId === !null ||req.body.CategoryId){
         const product = await Product.create({...req.body})
         res.status(201).send({message: "Product added...", product})
+      } else {
+        res.status(401).send({message: "Please fill all the fields..."})
+      }
     } catch (error) {
         console.log(error);
         res.status(500).send({
