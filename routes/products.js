@@ -10,5 +10,6 @@ router.put('/id/:id',ProductController.updateProduct);
 router.delete('/id/:id',ProductController.deleteProduct);
 router.get('/productcategorysection',ProductController.getProductCategorySection);
 router.get('/id/:id',ProductController.getProductById);
-
+router.get('/name/:product',ProductController.getProductByName);
+router.get('/price/:price',ProductController.getProductByPrice);
 module.exports = router    

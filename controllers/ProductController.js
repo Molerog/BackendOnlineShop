@@ -99,7 +99,33 @@ const ProductController = {
         } catch (error) {
           res.status(500).send({ message: ' We had a problem searching the product...' });
         }
-      }
+      },
+      async getProductByName (req,res){
+        try {
+          const ProductByName = await Product.findAll({
+            where:{
+              product: req.params.product
+            }
+          },
+          );
+          res.status(201).send({message: 'Product found...', ProductByName})              
+        } catch (error) {
+          res.status(500).send({message: ' We had a problem searching the product...' });
+        }
+      },
+      async getProductByPrice (req,res){
+        try {
+          const ProductByPrice = await Product.findAll({
+            where:{
+              price: req.params.price
+            }
+          },
+          );
+          res.status(201).send({message: 'Product found...', ProductByPrice})              
+        } catch (error) {
+          res.status(500).send({message: ' We had a problem searching the product...' });
+        }
+      }  
 }
 
 module.exports = ProductController
