@@ -7,6 +7,16 @@ module.exports = {
         category: "premium",
         createdAt: new Date(),
         updatedAt: new Date()   
+      },
+      {
+        category: "medium",
+        createdAt: new Date(),
+        updatedAt: new Date()   
+      },
+      {
+        category: "lowcost",
+        createdAt: new Date(),
+        updatedAt: new Date()   
       }
     ])
   },

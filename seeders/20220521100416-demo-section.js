@@ -18,6 +18,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        section: 'Laptops',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

@@ -1,4 +1,4 @@
-const {Product,Order} = require('../models/index');
+const {Product, Order, Category, Section} = require('../models/index');
 
 const ProductController = {
     async create(req,res) {
@@ -27,12 +27,12 @@ const ProductController = {
           const productsOrders = await Product.findAll({
             include: [Order]
           });
-          res.status(201).send({ mensaje: 'Show relations', productsOrders });
+          res.status(201).send({ message: 'Show relations', productsOrders });
         } catch (error) {
           console.log(error);
           res
             .status(500)
-            .send({ mensaje: ' We had a problem looking for relations' });
+            .send({ message: ' We had a problem looking for relations' });
         }
       },
       async updateProduct(req, res) {
@@ -49,7 +49,42 @@ const ProductController = {
           console.log(error);
           res
             .status(500)
-            .send({ mensaje: ' We had a problem updating the product...' });
+            .send({ message: ' We had a problem updating the product...' });
+        }
+      },
+      async deleteProduct(req,res) {
+        try {
+            await Product.destroy({
+            where:{
+              id:req.params.id
+            }
+          },
+          );
+          res.status(201).send({message: 'Product has been deleted...'})
+        } catch (error) {
+          console.log(error);
+          res
+            .status(500)
+            .send({ message: ' We had a problem deleting the product...' });
+        }
+      },
+      async getProductCategorySection(req,res) {
+        try {
+           const productSectionCategory = await Product.findAll({
+              attributes: {exclude: ['createdAt','updatedAt','SectionId','CategoryId']},
+              include: [{
+                model:Section,
+                attributes: ['section']
+              },
+              {
+                model:Category,
+                attributes: ['category']
+              }
+            ]
+            })
+            res.status(201).send({message: 'Search completed...', productSectionCategory})
+        } catch (error) {
+          res.status(500).send({ message: ' We had a problem searching the products...' });
         }
       }
 }
