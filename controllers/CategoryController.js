@@ -69,8 +69,20 @@ const CategoryController ={
             } catch (error) {
               res.status(500).send({ message: ' We had a problem searching the category...' });
             }
-          }
-
+          },
+          async getCategoryByName (req,res){
+            try {
+              const categoryByName = await Category.findAll({
+                where:{
+                  category: req.params.category
+                }
+              },
+              );
+              res.status(201).send({message: 'Category found...', categoryByName})              
+            } catch (error) {
+              res.status(500).send({ message: ' We had a problem searching the category...' });
+            }
+          } 
     }
 
     module.exports = CategoryController
