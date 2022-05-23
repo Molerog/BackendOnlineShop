@@ -1,4 +1,4 @@
-const {User,Order} = require('../models/index');
+const {User,Order, Product} = require('../models/index');
 
 //-----> Controlador para tabla "User" <------// 
 
@@ -27,10 +27,12 @@ const UserController = {
         }
     },
 //-----Obtiene el usuario y su pedido-----//
-    async getUserOrder(req, res) {
+    async getUserOrderProduct(req, res) {
         try {
           const usersOrders = await User.findAll({
-            include: [Order],
+            include: [
+                {model: Order, include: [Product] }
+              ],
           });
           res.status(201).send({ mensaje: 'Show Users with Orders', usersOrders });
         } catch (error) {

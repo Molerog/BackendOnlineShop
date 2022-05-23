@@ -43,7 +43,6 @@ const ProductController = {
               
             },
           ]
-
           })
           res.status(201).send({ message: 'Show relations', productsOrders });
         } catch (error) {
