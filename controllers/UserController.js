@@ -6,7 +6,7 @@ const bcrypt =require('bcryptjs')
 const UserController = {
     async create(req,res) {
     try {
-        if (req.body.name === !null ||req.body.surname === !null ||req.body.email === !null || req.body.dni === !null || req.body.password === !null){
+        if (req.body.name === !null ||req.body.surname === !null ||req.body.email === !null || req.body.dni === !null || req.body.password){
         req.body.role = 'user';
         const password = bcrypt.hashSync(req.body.password,10)
         const user = await User.create({...req.body, password}) //Esto es lo mismo que password: password
