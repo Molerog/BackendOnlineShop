@@ -1,4 +1,4 @@
-const {Product, Order, Category, Section} = require('../models/index');
+const {Product, Order, Category, Section, Order_Product} = require('../models/index');
 
 //-----> Controlador para tabla "Product" <------// 
 
@@ -30,12 +30,21 @@ const ProductController = {
             res.status(500).send({message: "We had an issue searching the products..."})
         }
     },
-//-----Obtiene el producto junto al pedido al que pertenece-----// **A LA ESPERA DE HACER MÁS PRUEBAS**
+//-----Obtiene el producto junto al pedido al que pertenece-----//
     async getProductOrder(req, res) {
         try {
           const productsOrders = await Product.findAll({
-            include: [Order]
-          });
+            attributes: {exclude: ['createdAt','updatedAt','SectionId','CategoryId']},
+            include: [              
+            {
+              model:Order,
+              through: {attributes: []},
+              attributes: ['order_num'],
+              
+            },
+          ]
+
+          })
           res.status(201).send({ message: 'Show relations', productsOrders });
         } catch (error) {
           console.log(error);
