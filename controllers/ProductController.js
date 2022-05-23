@@ -6,7 +6,7 @@ const {Product, Order, Category, Section, Order_Product} = require('../models/in
 const ProductController = {
     async create(req,res) {
     try {
-        if (req.body.product === !null || req.body.price === !null ||req.body.SectionId === !null ||req.body.CategoryId){
+        if (req.body.product === !null && req.body.price === !null && req.body.SectionId === !null && req.body.CategoryId ===!null){
         const product = await Product.create({...req.body})
         res.status(201).send({message: "Product added...", product})
       } else {
