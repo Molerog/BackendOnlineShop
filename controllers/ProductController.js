@@ -31,19 +31,19 @@ const ProductController = {
         }
     },
 //-----Obtiene el producto junto al pedido al que pertenece-----// **A LA ESPERA DE HACER MÁS PRUEBAS**
-    // async getProductOrder(req, res) {
-    //     try {
-    //       const productsOrders = await Product.findAll({
-    //         include: [Order]
-    //       });
-    //       res.status(201).send({ message: 'Show relations', productsOrders });
-    //     } catch (error) {
-    //       console.log(error);
-    //       res
-    //         .status(500)
-    //         .send({ message: ' We had a problem looking for relations' });
-    //     }
-    //   },
+    async getProductOrder(req, res) {
+        try {
+          const productsOrders = await Product.findAll({
+            include: [Order]
+          });
+          res.status(201).send({ message: 'Show relations', productsOrders });
+        } catch (error) {
+          console.log(error);
+          res
+            .status(500)
+            .send({ message: ' We had a problem looking for relations' });
+        }
+      },
 
 //-----Actualiza los productos por ID-----//
       async updateProduct(req, res) {
