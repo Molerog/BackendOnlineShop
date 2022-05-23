@@ -20,7 +20,7 @@ app.use('/products', require('./routes/products'));
 app.use('/categories', require('./routes/categories'));
 app.use('/sections', require('./routes/sections'));
 app.use('/reviews', require('./routes/reviews'));
-app.use('/ordershasproducts', require('./routes/ordershasproducts'));
+
 
 
 app.listen(port, () => {

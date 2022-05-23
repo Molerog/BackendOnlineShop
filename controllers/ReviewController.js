@@ -23,6 +23,17 @@ const ReviewController = {
         .send({ mensaje: 'We had a problem looking for all reviews' });
     }
   },
+  async getAllReviews(req, res) {
+    try {
+      const allreviews = await Review.findAll();
+      res.status(201).send({ mensaje: 'Search completed...', allreviews });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .send({ mensaje: 'We had a problem looking for all reviews' });
+    }
+  },
   async deleteReview(req, res) {
     try {
       await Review.destroy({

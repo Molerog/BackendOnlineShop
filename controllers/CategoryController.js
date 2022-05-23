@@ -1,5 +1,9 @@
 const {Category} = require('../models/index');
 
+
+//-----> Controlador para tabla "Category" <------// 
+
+//-----Creación de categoría-----//
 const CategoryController ={
     async create(req,res) {
         try {
@@ -13,6 +17,7 @@ const CategoryController ={
             })
         }
         },
+//-----Muestra todas las categorías-----//
         async getAllCategory(req, res) {
             try {
               const allcategories = await Category.findAll();
@@ -24,6 +29,7 @@ const CategoryController ={
                 .send({ mensaje: 'We had a problem looking for all categories' });
             }
           },
+//-----Borra una categoría por ID-----//
           async deleteCategory(req,res) {
             try {
                 await Category.destroy({
@@ -40,6 +46,7 @@ const CategoryController ={
                 .send({ message: ' We had a problem deleting the category...' });
             }
           },
+//-----Actualiza una categoría por ID-----//
           async updateCategory(req, res) {
             try {
               await Category.update({...req.body},
@@ -57,6 +64,7 @@ const CategoryController ={
                 .send({ message: ' We had a problem updating the category...' });
             }
           },
+//-----Muestra una cateogría por ID-----//
           async getCategoryById (req, res){
             try {
               const categoryById = await Category.findAll({
@@ -70,6 +78,7 @@ const CategoryController ={
               res.status(500).send({ message: ' We had a problem searching the category...' });
             }
           },
+//-----Muestra una cateogría por Nombre-----//
           async getCategoryByName (req,res){
             try {
               const categoryByName = await Category.findAll({
