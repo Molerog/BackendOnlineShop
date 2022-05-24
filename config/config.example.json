@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "tupassword",
-    "database": "onlineshop",
+    "password": "tu password aquí",
+    "database": "onlineShop",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "jwt_secret": "clavesecreta"
+    "jwt_secret": "secretito"
   },
   "test": {
     "username": "root",
