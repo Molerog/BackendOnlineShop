@@ -1,7 +1,9 @@
-const { User, Order, Product } = require('../models/index');
+const { User, Order, Product, Token } = require('../models/index');
 const bcrypt = require('bcryptjs');
 //-----> Controlador para tabla "User" <------//
-
+const jwt = require('jsonwebtoken');
+const { jwt_secret } = require('../config/config.json')['development'];
+// ---->BCRYPT ------->
 //-----Creación de Usuarios-----//
 const UserController = {
   async create(req, res) {
@@ -47,7 +49,10 @@ const UserController = {
           .status(400)
           .send({ message: 'User or password incorrect.2..' });
       }
-      res.send({ message: 'user logged...', user });
+      token = jwt.sign({ id: user.id }, jwt_secret);
+      Token.create({ token: token, UserId: user.id });
+      //res.send({ message: 'user logged...', user });
+      res.send({ message: 'Bienvenid@' + user.name, user, token });
     } catch (error) {
       res.status(401).send({ message: 'We had an issue checking the user...' });
     }
