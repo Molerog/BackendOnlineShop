@@ -16,7 +16,7 @@ const authentication = async (req, res, next) => {
       },
     });
     if (!tokenFound) {
-      res.status(401).send({ message: 'No estas autorizado' });
+      res.status(401).send({ message: 'You are not authorized' });
     }
     req.user = user;
     next();
@@ -24,7 +24,7 @@ const authentication = async (req, res, next) => {
     console.log(error);
     res
       .status(500)
-      .send({ error, message: 'Ha habido un problema con el token' });
+      .send({ error, message: 'There is a problem with the token'});
   }
 };
 module.exports = { authentication };

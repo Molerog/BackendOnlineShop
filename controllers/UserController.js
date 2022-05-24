@@ -1,9 +1,9 @@
-const { User, Order, Product, Token } = require('../models/index');
+const { User, Order, Product, Token, Sequelize } = require('../models/index.js');
 const bcrypt = require('bcryptjs');
-//-----> Controlador para tabla "User" <------//
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development'];
-// ---->BCRYPT ------->
+const {Op} = Sequelize;
+
 //-----Creación de Usuarios-----//
 const UserController = {
   async create(req, res) {
@@ -83,6 +83,23 @@ const UserController = {
         .send({ mensaje: ' We had a problem looking for Users with orders ' });
     }
   },
+  //-----Logout usuario-----//
+  async logout(req,res){
+    try {
+      await Token.destroy({
+        where:{
+          [Op.and] : [
+            {UserId: req.user.id},
+            {token: req.headers.authorization}
+          ]
+        }
+      });
+      res.send({message: 'User disconnected...'})
+    } catch (error) {
+      console.log(error)
+      res.status(500).send({message: 'We had an issue loging out...'})
+    }
+  }
 };
 
 module.exports = UserController;
