@@ -10,6 +10,7 @@ module.exports = {
         surname: 'Molero',
         email:'moltorger@gmail.com',
         dni: '44886553Y',  
+        role: 'admin',
         password: bcrypt.hashSync('patata', 10),
         createdAt: new Date(),
         updatedAt: new Date()
@@ -28,6 +29,7 @@ module.exports = {
       surname: 'vabera',
       email:'varberao@gmail.com',
       dni: '33434923Y',
+      role:'admin',
       password: bcrypt.hashSync('zanahoria', 10),     
       createdAt: new Date(),
       updatedAt: new Date()

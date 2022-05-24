@@ -97,7 +97,6 @@ const UserController = {
       res.send({message: 'User disconnected...'})
     } catch (error) {
       console.log(error)
-      res.status(500).send({message: 'We had an issue loging out...'})
     }
   }
 };

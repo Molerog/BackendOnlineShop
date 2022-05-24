@@ -7,9 +7,7 @@ const authentication = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     const payload = jwt.verify(token, jwt_secret);
-    console.log(payload);
     const user = await User.findByPk(payload.id);
-    console.log(user);
     const tokenFound = await Token.findOne({
       where: {
         [Op.and]: [{ UserId: user.id }, { token: token }],
@@ -18,6 +16,7 @@ const authentication = async (req, res, next) => {
     if (!tokenFound) {
       res.status(401).send({ message: 'You are not authorized' });
     }
+    console.log('ey')
     req.user = user;
     next();
   } catch (error) {
@@ -27,4 +26,16 @@ const authentication = async (req, res, next) => {
       .send({ error, message: 'There is a problem with the token'});
   }
 };
-module.exports = { authentication };
+
+const isAdmin = async (req, res, next) => {
+  const admins = ["admin", "superadmin"];
+  if (!admins.includes(req.user.role)) {
+    return res.status(403).send({
+      message: "You don't have permissions",
+    });
+  }
+  next();
+};
+
+
+module.exports = { authentication, isAdmin };
