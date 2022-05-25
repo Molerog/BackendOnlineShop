@@ -5,7 +5,7 @@ const {authentication, isAdmin} = require('../middleware/authentication');
 const {uploadUserProductsImages} = require('../middleware/multer');
 
 
-router.post('/', authentication, isAdmin, uploadUserProductsImages.select('imageProduct'), ProductController.create);
+router.post('/', authentication, isAdmin, uploadUserProductsImages.single('imageProduct'), ProductController.create);
 router.get('/', ProductController.getAllProduct);
 router.get('/productsorder',ProductController.getProductOrder);
 router.put('/id/:id',authentication, isAdmin, ProductController.updateProduct);

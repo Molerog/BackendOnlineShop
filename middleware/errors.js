@@ -21,7 +21,7 @@ const typeError = (err, req, res, next) => {
         } else if (errOrigin === 'User'){
             res.status(500).send('We had an issue creating the User...');
         } else if (errOrigin === 'Product') {
-            res.status(500).send('Hubo un problema a la hora de crear un Producto');
+            res.status(500).send('We had an issue creating the Product...');
         }
         else {
             res.status(500).send('There is an error in your sintaxis...');
