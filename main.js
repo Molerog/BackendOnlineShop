@@ -10,6 +10,7 @@ const options = {
 };
 const logger = Logger.create('Mensaje', options);
 const express = require('express');
+const { typeError } = require('./middleware/errors');
 const app = express();
 const port = 3000;
 app.use(express.json());
@@ -20,6 +21,8 @@ app.use('/products', require('./routes/products'));
 app.use('/categories', require('./routes/categories'));
 app.use('/sections', require('./routes/sections'));
 app.use('/reviews', require('./routes/reviews'));
+
+app.use(typeError);
 
 
 

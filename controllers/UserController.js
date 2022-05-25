@@ -6,29 +6,18 @@ const {Op} = Sequelize;
 
 //-----Creación de Usuarios-----//
 const UserController = {
-  async create(req, res) {
+  async create(req, res, next) {
     try {
-      if (
-        req.body.name === !null ||
-        req.body.surname === !null ||
-        req.body.email === !null ||
-        req.body.dni === !null ||
-        req.body.password
-      ) {
         req.body.role = 'user';
         const password = bcrypt.hashSync(req.body.password, 10);
         const user = await User.create({ ...req.body, password }); //Esto es lo mismo que password: password
         res.status(201).send({ message: 'User added...', user });
-      } else {
-        res.status(401).send({ message: 'Please, enter all fields' });
-      }
-    } catch (error) {
-      console.log(error);
-      res.status(500).send({
-        message: 'We had an issue creating the user...',
-      });
+    } catch (error) {  
+      console.log("eeee")    
+      error.origin = "User"
+      next(error)
     }
-  },
+  }, 
   //User <---- LOGIN ----------------------------------------------->
   async login(req, res) {
     try {
