@@ -16,13 +16,13 @@ const typeError = (err, req, res, next) => {
     const errOrigin = err.origin
     if(err.name === 'SequelizeValidationError' || err.name === 'SequelizeUniqueConstraintError'){
         return err = handleValidationError(err, res);
-    } else
-        if (errOrigin === 'Product') {
-            res.status(500).send('We had an issue creating the Product...');
-        } else if (errOrigin === 'Review'){
-            res.status(500).send('We had an issue creating the Review...');
-        }   else {
+    }  else if (errOrigin === 'Review'){
+           res.status(500).send('We had an issue creating the Review...');
+        } else if (errOrigin === 'User'){
             res.status(500).send('We had an issue creating the User...');
+        }
+        else {
+            res.status(500).send('There is an error in your sintaxis...');
         }  
     }
 

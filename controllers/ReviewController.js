@@ -7,7 +7,7 @@ const ReviewController = {
     try {
       const review = await Review.create({ ...req.body });
       res.status(201).send({ message: 'Review added...', review });
-    } catch (error) {
+    } catch (error) { 
       error.origin = 'Review'
       next(error)
     }

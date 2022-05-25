@@ -29,13 +29,13 @@ const UserController = {
       if (!user) {
         return res
           .status(400)
-          .send({ message: 'User or password incorrect.1..' });
+          .send({ message: 'User or password incorrect...' });
       }
       const isMatch = bcrypt.compareSync(req.body.password, user.password);
       if (!isMatch) {
         return res
           .status(400)
-          .send({ message: 'User or password incorrect.2..' });
+          .send({ message: 'User or password incorrect...' });
       }
       token = jwt.sign({ id: user.id }, jwt_secret);
       Token.create({ token: token, UserId: user.id });
