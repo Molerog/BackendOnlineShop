@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development'];
 const {Op} = Sequelize;
+const transporter = require("../config/nodemailer");
 
 //-----Creación de Usuarios-----//
 const UserController = {
@@ -13,13 +14,36 @@ const UserController = {
           ...req.body,
           password : hash,
           confirmed:false,
-         }); //Esto es lo mismo que password: password
+          role:'user'          
+         });
+         const url ='http://localhost:3000/users/confirm/'+ req.body.email
+         await transporter.sendMail({
+          to: req.body.email,
+          subject: "Confirme su registro",
+          html: `<h3>Bienvenido, estás a un paso de registrarte </h3>
+          <a href="${url}"> Click para confirmar tu registro</a>
+          `
+        });
         res.status(201).send({ message: 'We sent you an email to confirm your register...', user });
     } catch (error) {  
       error.origin = "User"
       next(error)
     }
   }, 
+
+  async confirm(req,res){
+    try {
+      const user = await User.update({confirmed:true},{
+        where:{
+          email: req.params.email
+        }
+      })
+      res.status(201).send( "Usuario confirmado con exito");
+    } catch (error) {
+      console.error(error)
+    }
+  },
+
   //User <---- LOGIN ----------------------------------------------->
   async login(req, res) {
     try {
@@ -33,6 +57,9 @@ const UserController = {
         return res
           .status(400)
           .send({ message: 'User or password incorrect...' });
+      }
+      if(!user.confirmed){
+        return res.status(400).send({message: 'You may confirm your email'});
       }
       const isMatch = bcrypt.compareSync(req.body.password, user.password);
       if (!isMatch) {

@@ -38,7 +38,15 @@ module.exports = (sequelize, DataTypes) => {
     },
       confirmed: DataTypes.BOOLEAN,
       dni: DataTypes.STRING,
-      password: DataTypes.STRING,
+      password: {
+        type: DataTypes.STRING,
+        allowNull:false,
+        validate:{
+          notNull:{
+            msg:'You need to provide a password'
+          },
+        },
+      },
       role: DataTypes.STRING
     },
     {
