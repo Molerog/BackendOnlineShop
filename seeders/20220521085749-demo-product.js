@@ -12,7 +12,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        product: 'One Plus 10 Pro',
+        product: 'Xiaomi MI 11 Lite',
         price: 289,
         SectionId: 1,
         CategoryId: 2,
