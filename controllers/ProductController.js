@@ -4,7 +4,7 @@ const {Product, Order, Category, Section, Order_Product} = require('../models/in
 
 //-----Creación de producto-----//
 const ProductController = {
-    async create(req,res) {
+    async create(req,res,next) {
     try {
       if (req.body.product === !null || req.body.price === !null || req.body.SectionId === !null || req.body.CategoryId === !null || req.body.OrderId){
         const product = await Product.create({...req.body})
@@ -14,11 +14,8 @@ const ProductController = {
         res.status(401).send({message: "Please fill all the fields..."})
       }
     } catch (error) {
-        console.log(error);
-        res.status(500).send({
-            message:
-            "We had an issue creating the product..."
-        })
+       error.origin = 'Product'
+       next(error)
     }
     },
 //-----Obtiene todos los productos-----//
@@ -47,10 +44,7 @@ const ProductController = {
           })
           res.status(201).send({ message: 'Show relations', productsOrders });
         } catch (error) {
-          console.log(error);
-          res
-            .status(500)
-            .send({ message: ' We had a problem looking for relations' });
+          
         }
       },
 

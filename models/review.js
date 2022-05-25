@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull : false,
         validate : {
           notNull :{ 
-              msg: 'you need to rate the product...'
+              msg: 'You need to rate the product...'
           },
         },
       },
