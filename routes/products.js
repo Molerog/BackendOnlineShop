@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const ProductController = require('../controllers/ProductController');
-const {authentication, isAdmin} = require('../middleware/authentication')
+const {authentication, isAdmin} = require('../middleware/authentication');
+const {uploadUserProductsImages} = require('../middleware/multer');
 
 
-router.post('/', authentication, isAdmin, ProductController.create);
+router.post('/', authentication, isAdmin, uploadUserProductsImages.select('imageProduct'), ProductController.create);
 router.get('/', ProductController.getAllProduct);
 router.get('/productsorder',ProductController.getProductOrder);
 router.put('/id/:id',authentication, isAdmin, ProductController.updateProduct);
