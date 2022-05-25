@@ -8,10 +8,14 @@ const {Op} = Sequelize;
 const UserController = {
   async create(req, res, next) {
     try {
-        req.body.role = 'user';
-        const password = bcrypt.hashSync(req.body.password, 10);
-        const user = await User.create({ ...req.body, password }); //Esto es lo mismo que password: password
-        res.status(201).send({ message: 'User added...', user });
+        const hash = bcrypt.hashSync(req.body.password, 10);
+        const user = await User.create({ 
+          ...req.body, 
+          password: hash,
+          confirmed:false,
+          role:'user'
+        }); //Esto es lo mismo que password: password
+        res.status(201).send({ message: 'We will send you an email in order to verify your registration', user });
     } catch (error) {  
       error.origin = "User"
       next(error)
