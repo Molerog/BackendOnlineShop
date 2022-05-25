@@ -52,7 +52,10 @@ const OrderController = {
             model: Product,
             through: { attributes: [] },
             attributes: ['product', 'price'],
-            include: [Section],
+            include: [{
+              model: Section,
+              attributes:['section']
+            }],
           },
         ],
       });
