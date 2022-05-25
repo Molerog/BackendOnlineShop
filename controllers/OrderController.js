@@ -10,8 +10,10 @@ const OrderController ={
             res.status(201).send({message: "product added...", order})
         } catch (error) {
             console.log(error);
-            error.origin = 'Order'
-            next(error)
+            res.status(500).send({
+                message:
+                "We had an issue creating the product..."
+            })
         }
         },
 //-----Muestra el pedido y a su usuario-----//

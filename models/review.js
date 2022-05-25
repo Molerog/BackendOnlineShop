@@ -17,8 +17,26 @@ module.exports = (sequelize, DataTypes) => {
     {
       UserId: DataTypes.INTEGER,
       ProductId: DataTypes.INTEGER,
-      review: DataTypes.STRING,
-      rating: DataTypes.INTEGER,
+      review: {
+        type:
+        DataTypes.STRING,
+        allowNull : false,
+        validate :{
+          notNull : {
+            msg: 'You need to post a review...'
+          },
+        },
+      },
+      rating: {
+       type: 
+        DataTypes.INTEGER,
+        allowNull : false,
+        validate : {
+          notNull :{ 
+              msg: 'you need rate the product...'
+          },
+        },
+      },
     },
     {
       sequelize,

@@ -13,7 +13,6 @@ const UserController = {
         const user = await User.create({ ...req.body, password }); //Esto es lo mismo que password: password
         res.status(201).send({ message: 'User added...', user });
     } catch (error) {  
-      console.log("eeee")    
       error.origin = "User"
       next(error)
     }
