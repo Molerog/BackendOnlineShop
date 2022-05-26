@@ -8,19 +8,21 @@ module.exports = {
       {
         name: 'German',
         surname: 'Molero',
-        email:'moltorger@gmail.com',
+        email:'inventadatotal@gmail.com',
         dni: '44886553Y',  
         role: 'admin',
-        password: bcrypt.hashSync('patata', 10),
+        password: bcrypt.hashSync('puredepatata', 10),
+        confirmed: true,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         name: 'Xavi',
         surname: 'PaterandCommander',
-        email:'antonio@gmail.com',
+        email:'diacono@gmail.com',
         dni: '33449923Y', 
         role: 'user',
+        confirmed:true,
         password: bcrypt.hashSync('padrenostrum', 10),       
         createdAt: new Date(),
         updatedAt: new Date()   
@@ -31,6 +33,7 @@ module.exports = {
       email:'varberao@gmail.com',
       dni: '33434923Y',
       role:'admin',
+      confirmed: true,
       password: bcrypt.hashSync('zanahoria', 10),     
       createdAt: new Date(),
       updatedAt: new Date()

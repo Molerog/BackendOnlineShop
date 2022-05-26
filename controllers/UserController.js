@@ -25,7 +25,8 @@ const UserController = {
           `
         });
         res.status(201).send({ message: 'We sent you an email to confirm your register...', user });
-    } catch (error) {  
+    } catch (error) { 
+      console.log(error) 
       error.origin = "User"
       next(error)
     }
@@ -94,14 +95,22 @@ const UserController = {
   async getUserOrderProduct(req, res) {
     try {
       const usersOrders = await User.findAll({
-        include: [{ model: Order, include: [Product] }],
+        attributes: {
+          exclude: ['createdAt', 'updatedAt', 'confirmed', 'password'],
+        },
+        include: [{ 
+          model: Order, 
+          attributes: ['order_num'],
+          include: [{
+            model: Product,
+            attributes: ['product','price'],
+            through:{attributes: []} }]}],
       });
       res.status(201).send({ mensaje: 'Show Users with Orders', usersOrders });
     } catch (error) {
       console.log(error);
-      res
-        .status(500)
-        .send({ mensaje: ' We had a problem looking for Users with orders ' });
+      error.origin = 'User'
+      next(error)
     }
   },
   //-----Logout usuario-----//
@@ -117,7 +126,8 @@ const UserController = {
       });
       res.send({message: 'User disconnected...'})
     } catch (error) {
-      console.log(error)
+      error.origin = 'User'
+      next(error)
     }
   }
 };

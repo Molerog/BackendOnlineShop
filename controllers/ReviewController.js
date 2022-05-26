@@ -71,7 +71,7 @@ const ReviewController = {
     try {
       const ReviewUserProduct = await Review.findAll({
         attributes: {
-          exclude: ['createdAt', 'updatedAt', 'SectionId', 'CategoryId'],
+          exclude: ['createdAt', 'updatedAt', 'SectionId', 'CategoryId', 'UserId', 'ProductId'],
         },
         include: [
           {
