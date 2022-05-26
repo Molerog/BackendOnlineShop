@@ -16,24 +16,44 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        name: 'Antonio',
-        surname: 'Molero',
+        name: 'Xavi',
+        surname: 'PaterandCommander',
         email:'antonio@gmail.com',
         dni: '33449923Y', 
-        password: bcrypt.hashSync('chorizo', 10),       
+        password: bcrypt.hashSync('padrenostrum', 10),       
         createdAt: new Date(),
         updatedAt: new Date()   
       },
       {
       name: 'Vicent',
-      surname: 'vabera',
+      surname: 'Vabera',
       email:'varberao@gmail.com',
       dni: '33434923Y',
       role:'admin',
       password: bcrypt.hashSync('zanahoria', 10),     
       createdAt: new Date(),
       updatedAt: new Date()
-    }
+    },
+    {
+      name: 'Imanol',
+      surname: 'Superman',
+      email:'imanol@gmail.com',
+      dni: '33433923Y',
+      role:'user',
+      password: bcrypt.hashSync('jurassicpark', 10),     
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      name: 'David',
+      surname: 'ElJester',
+      email:'arlequin@gmail.com',
+      dni: '33433923Y',
+      role:'user',
+      password: bcrypt.hashSync('patinaje', 10),     
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
     ])   
   },
 
