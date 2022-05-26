@@ -31,6 +31,34 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
         },
+        {
+          order_num:5,
+          date: "2030-07-25",
+          UserId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date()
+          },
+          {
+            order_num:6,
+            date: "2030-07-25",
+            UserId: 5,
+            createdAt: new Date(),
+            updatedAt: new Date()
+            },
+          {
+            order_num:7,
+            date: "2030-07-25",
+            UserId: 5,
+            createdAt: new Date(),
+            updatedAt: new Date()
+            },
+         {
+            order_num:8,
+            date: "2030-07-25",
+            UserId: 3,
+            createdAt: new Date(),
+            updatedAt: new Date()
+            },    
     ])   
   },
 
