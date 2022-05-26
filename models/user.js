@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         isEmail: {
           msg: 'Please insert a valid email adress'
-        }
+        },
       },
     },
       confirmed: DataTypes.BOOLEAN,

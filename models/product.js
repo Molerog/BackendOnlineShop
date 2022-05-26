@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      image_path: {
+        type: DataTypes.STRING,      
+      },
       SectionId: DataTypes.INTEGER,
       CategoryId: DataTypes.INTEGER,
     },

@@ -11,6 +11,7 @@ const UserController = {
     try {
         const hash = bcrypt.hashSync(req.body.password, 10);
         const user = await User.create({ 
+<<<<<<< HEAD
           ...req.body,
           password : hash,
           confirmed:false,
@@ -25,6 +26,14 @@ const UserController = {
           `
         });
         res.status(201).send({ message: 'We sent you an email to confirm your register...', user });
+=======
+          ...req.body, 
+          password: hash,
+          confirmed:false,
+          role:'user'
+        }); //Esto es lo mismo que password: password
+        res.status(201).send({ message: 'We will send you an email in order to verify your registration', user });
+>>>>>>> develop
     } catch (error) {  
       error.origin = "User"
       next(error)
