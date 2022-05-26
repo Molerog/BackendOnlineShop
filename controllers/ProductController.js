@@ -18,7 +18,11 @@ const ProductController = {
 //-----Obtiene todos los productos-----//
     async getAllProduct(req,res){
         try {
-          const allproducts = await Product.findAll()
+          const allproducts = await Product.findAll({
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'SectionId', 'CategoryId'],
+            },
+          })          
            res.status(201).send({message: 'Search completed...', allproducts})
         } catch (error) {
             console.log(error)
@@ -41,12 +45,14 @@ const ProductController = {
           })
           res.status(201).send({ message: 'Show relations', productsOrders });
         } catch (error) {
-          
+          res
+            .status(500)
+            .send({ message: ' We had a problem updating the product...' });
         }
       },
 
 //-----Actualiza los productos por ID-----//
-      async updateProduct(req, res) {
+      async updateProduct(req, res, next) {
         try {
           await Product.update({...req.body},
             {
@@ -60,13 +66,12 @@ const ProductController = {
           res.status(201).send({message: 'Product updated...'})
         } catch (error) {
           console.log(error);
-          res
-            .status(500)
-            .send({ message: ' We had a problem updating the product...' });
+          error.origin = 'Product'
+          next(error)
         }
       },
 //-----Elimina los productos por ID-----//
-      async deleteProduct(req,res) {
+      async deleteProduct(req,res,next) {
         try {
             await Product.destroy({
             where:{
@@ -76,10 +81,8 @@ const ProductController = {
           );
           res.status(201).send({message: 'Product has been deleted...'})
         } catch (error) {
-          console.log(error);
-          res
-            .status(500)
-            .send({ message: ' We had a problem deleting the product...' });
+          error.origin = 'Product'
+          next(error)
         }
       },
 //-----Muestra el producto junto a la categoría y la sección-----//
