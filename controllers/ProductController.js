@@ -151,6 +151,9 @@ const ProductController = {
       async productOrderedByPrice (req, res){
         try {
           const orderdedByPrice = await Product.findAll({
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'SectionId', 'CategoryId'],
+            },
               order:[
                 ['price', 'DESC']
               ]
