@@ -1,47 +1,61 @@
-const { User, Order, Product, Token, Sequelize } = require('../models/index.js');
+const {
+  User,
+  Order,
+  Product,
+  Token,
+  Sequelize,
+} = require('../models/index.js');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { jwt_secret } = require('../config/config.json')['development'];
-const {Op} = Sequelize;
-const transporter = require("../config/nodemailer");
+const { Op } = Sequelize;
+const transporter = require('../config/nodemailer');
 
 //-----Creación de Usuarios-----//
 const UserController = {
   async create(req, res, next) {
     try {
-        const hash = bcrypt.hashSync(req.body.password, 10);
-        const user = await User.create({ 
-          ...req.body,
-          password : hash,
-          confirmed:false,
-          role:'user'          
-         });
-         const url ='http://localhost:3000/users/confirm/'+ req.body.email
-         await transporter.sendMail({
-          to: req.body.email,
-          subject: "Confirme su registro",
-          html: `<h3>Bienvenido, estás a un paso de registrarte </h3>
+      console.log('ey');
+      const hash = await bcrypt.hash(req.body.password, 10);
+      console.log(hash);
+      const user = await User.create({
+        ...req.body,
+        password: hash,
+        confirmed: false,
+        role: 'user',
+      });
+      const url = 'http://localhost:3000/users/confirm/' + req.body.email;
+      await transporter.sendMail({
+        to: req.body.email,
+        subject: 'Confirme su registro',
+        html: `<h3>Bienvenido, estás a un paso de registrarte </h3>
           <a href="${url}"> Click para confirmar tu registro</a>
-          `
-        });
-        res.status(201).send({ message: 'We sent you an email to confirm your register...', user });
-    } catch (error) { 
-      console.log(error) 
-      error.origin = "User"
-      next(error)
-    }
-  }, 
-
-  async confirm(req,res){
-    try {
-      const user = await User.update({confirmed:true},{
-        where:{
-          email: req.params.email
-        }
-      })
-      res.status(201).send( "Usuario confirmado con exito");
+          `,
+      });
+      res.status(201).send({
+        message: 'We sent you an email to confirm your register...',
+        user,
+      });
     } catch (error) {
-      console.error(error)
+      console.log(error);
+      error.origin = 'User';
+      next(error);
+    }
+  },
+
+  async confirm(req, res) {
+    try {
+      const user = await User.update(
+        { confirmed: true },
+        {
+          where: {
+            email: req.params.email,
+          },
+        }
+      );
+      res.status(201).send('Usuario confirmado con exito');
+    } catch (error) {
+      console.error(error);
     }
   },
 
@@ -59,8 +73,8 @@ const UserController = {
           .status(400)
           .send({ message: 'User or password incorrect...' });
       }
-      if(!user.confirmed){
-        return res.status(400).send({message: 'You may confirm your email'});
+      if (!user.confirmed) {
+        return res.status(400).send({ message: 'You may confirm your email' });
       }
       const isMatch = bcrypt.compareSync(req.body.password, user.password);
       if (!isMatch) {
@@ -80,9 +94,9 @@ const UserController = {
   async getAll(req, res) {
     try {
       const users = await User.findAll({
-        attributes: {exclude: ['createdAt','updatedAt','confirmed']},
+        attributes: { exclude: ['createdAt', 'updatedAt', 'confirmed'] },
       });
-   
+
       res.status(201).send({ mensaje: 'Search completed...', users });
     } catch (error) {
       console.log(error);
@@ -98,38 +112,44 @@ const UserController = {
         attributes: {
           exclude: ['createdAt', 'updatedAt', 'confirmed', 'password'],
         },
-        include: [{ 
-          model: Order, 
-          attributes: ['order_num'],
-          include: [{
-            model: Product,
-            attributes: ['product','price'],
-            through:{attributes: []} }]}],
+        include: [
+          {
+            model: Order,
+            attributes: ['order_num'],
+            include: [
+              {
+                model: Product,
+                attributes: ['product', 'price'],
+                through: { attributes: [] },
+              },
+            ],
+          },
+        ],
       });
       res.status(201).send({ mensaje: 'Show Users with Orders', usersOrders });
     } catch (error) {
       console.log(error);
-      error.origin = 'User'
-      next(error)
+      error.origin = 'User';
+      next(error);
     }
   },
   //-----Logout usuario-----//
-  async logout(req,res){
+  async logout(req, res) {
     try {
       await Token.destroy({
-        where:{
-          [Op.and] : [
-            {UserId: req.user.id},
-            {token: req.headers.authorization}
-          ]
-        }
+        where: {
+          [Op.and]: [
+            { UserId: req.user.id },
+            { token: req.headers.authorization },
+          ],
+        },
       });
-      res.send({message: 'User disconnected...'})
+      res.send({ message: 'User disconnected...' });
     } catch (error) {
-      error.origin = 'User'
-      next(error)
+      error.origin = 'User';
+      next(error);
     }
-  }
+  },
 };
 
 module.exports = UserController;

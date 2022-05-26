@@ -10,16 +10,6 @@ Javascript Quiz built with HTML, CSS & JS.
 
 ## Project Objective
 
-The main objective of this project is to put into practice all that has been learnt in the last weeks of HTML5, CSS & JS.
-
-The project contains only one page, but you get the feeling that there are several pages in it.
-
-First Section -> Gif Init & Start
-
-Second Section -> Quiz Questions
-
-Third Section -> Show Results
-
 ## Built with...
 
 _This Project was developed with the following technologies_
@@ -39,7 +29,11 @@ _This Project was developed with the following technologies_
 - Table Products.
 - Section Table
 
+![foto](./Assets/Diagrama.png)
+
 2. Defining tasks in Trello.
+
+![foto](./Assets/Trello.png)
 
 3. Building relations with Sequelize, it's important to review the [Sequelize Documentation](https://sequelize.org/docs/v6/getting-started/).
 
@@ -47,7 +41,13 @@ _This Project was developed with the following technologies_
 
 5. Adding field validations.
 
-6. Implementing user registration with confirmation via email. We need to use [Multer Documentation](https://www.npmjs.com/package/multer).
+6. Building seeds (Users, Products, Orders & Reviews). Improving the organisation with an Excel File.
+
+![foto](./Assets/Product_table.png)
+
+7. Implementing user registration with confirmation via email. We need to use [Multer Documentation](https://www.npmjs.com/package/multer).
+
+8. Show Endpoints in Postman[API OnlineSHop](https://documenter.getpostman.com/view/21174543/Uz5ArJnd)
 
 ## Challenges
 
@@ -127,6 +127,12 @@ To deploy this project you must clone the repository through the following link:
 
 ```
 https://github.com/Molerog/BackendOnlineShop
+```
+
+Install dependecies
+
+```
+npm i
 ```
 
 #### Preview
