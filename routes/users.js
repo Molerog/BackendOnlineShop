@@ -7,6 +7,7 @@ router.post('/', UserController.create);
 router.get('/', UserController.getAll);
 router.get('/userorder', authentication, UserController.getUserOrderProduct);
 router.post('/login', UserController.login);
+router.get('/confirm/:email',UserController.confirm)
 router.delete('/logout', authentication, UserController.logout);
 
 

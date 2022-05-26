@@ -6,10 +6,18 @@ const {Product, Order, Category, Section} = require('../models/index');
 const ProductController = {
     async create(req,res,next) {
     try {
+<<<<<<< HEAD
       if (req.file)req.body.image_path = req.file.filename;                
       const product = await Product.create({...req.body})
         product.addOrder(req.body.OrderId)        
         res.status(201).send({message: "Product added...", product})      
+=======
+     
+        const product = await Product.create({...req.body})
+        product.addOrder(req.body.OrderId)        
+        res.status(201).send({message: "Product added...", product})
+   
+>>>>>>> email
     } catch (error) {
        error.origin = 'Product'
        next(error)
