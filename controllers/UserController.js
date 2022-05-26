@@ -25,7 +25,8 @@ const UserController = {
           `
         });
         res.status(201).send({ message: 'We sent you an email to confirm your register...', user });
-    } catch (error) {  
+    } catch (error) { 
+      console.log(error) 
       error.origin = "User"
       next(error)
     }
