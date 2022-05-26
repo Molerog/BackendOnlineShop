@@ -11,9 +11,10 @@ const generateUploadImageMulter = path => Multer({
     },
     limits: { fileSize: 2 * 1024 * 1024 }
 });
-const uploadUserProductsImages = generateUploadImageMulter('./images');
+const uploadUserProductsImages = generateUploadImageMulter('./images/products');
+const uploadUserImages = generateUploadImageMulter('./images/users');
 
 
 
 
-module.exports = {uploadUserProductsImages};
+module.exports = {uploadUserProductsImages, uploadUserImages};
