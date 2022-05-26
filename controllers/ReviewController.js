@@ -34,7 +34,7 @@ const ReviewController = {
         .send({ mensaje: 'We had a problem looking for all reviews' });
     }
   },
-  async deleteReview(req, res) {
+  async deleteReview(req, res, next) {
     try {
       await Review.destroy({
         where: {
@@ -43,13 +43,11 @@ const ReviewController = {
       });
       res.status(201).send({ message: 'Review has been deleted...' });
     } catch (error) {
-      console.log(error);
-      res
-        .status(500)
-        .send({ message: ' We had a problem deleting the review...' });
+      error.origin = 'Review'
+      next(error)
     }
   },
-  async updateReview(req, res) {
+  async updateReview(req, res, next) {
     try {
       await Review.update(
         { ...req.body },
@@ -62,9 +60,8 @@ const ReviewController = {
       res.status(201).send({ message: 'Review updated...' });
     } catch (error) {
       console.log(error);
-      res
-        .status(500)
-        .send({ message: ' We had a problem updating the review...' });
+      error.origin = 'Review'
+      next(error)
     }
   },
   async getReviewUserProduct(req, res) {

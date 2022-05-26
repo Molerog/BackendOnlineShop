@@ -15,6 +15,7 @@ const authentication = async (req, res, next) => {
     });
     if (!tokenFound) {
       res.status(401).send({ message: 'You are not authorized' });
+      return
     }
     req.user = user;
     next();
@@ -27,7 +28,7 @@ const authentication = async (req, res, next) => {
 };
 
 const isAdmin = async (req, res, next) => {
-  const admins = ["admin", "superadmin"];
+  const admins = "admin";
   if (!admins.includes(req.user.role)) {
     return res.status(403).send({
       message: "You don't have permissions",

@@ -61,8 +61,8 @@ const ProductController = {
               }
             }
           );
-          const product = await Product.findByPk(req.params.id)
-          product.setOrders(req.body.OrderId)
+          const product = await Product.findByPk(req.params.id,)
+                    product.setOrders(req.body.OrderId,)
           res.status(201).send({message: 'Product updated...'})
         } catch (error) {
           console.log(error);
@@ -80,6 +80,7 @@ const ProductController = {
           },
           );
           res.status(201).send({message: 'Product has been deleted...'})
+         
         } catch (error) {
           error.origin = 'Product'
           next(error)
@@ -109,6 +110,9 @@ const ProductController = {
       async getProductById (req, res){
         try {
           const productById = await Product.findAll({
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'SectionId', 'CategoryId'],
+            },
             where:{
               id: req.params.id
             }
@@ -123,6 +127,9 @@ const ProductController = {
       async getProductByName (req,res){
         try {
           const ProductByName = await Product.findAll({
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'SectionId', 'CategoryId'],
+            },
             where:{
               product: req.params.product
             }
@@ -137,6 +144,9 @@ const ProductController = {
       async getProductByPrice (req,res){
         try {
           const ProductByPrice = await Product.findAll({
+            attributes: {
+              exclude: ['createdAt', 'updatedAt', 'SectionId', 'CategoryId'],
+            },
             where:{
               price: req.params.price
             }
