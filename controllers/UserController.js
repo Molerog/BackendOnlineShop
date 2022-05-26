@@ -95,7 +95,16 @@ const UserController = {
   async getUserOrderProduct(req, res) {
     try {
       const usersOrders = await User.findAll({
-        include: [{ model: Order, include: [Product] }],
+        attributes: {
+          exclude: ['createdAt', 'updatedAt', 'confirmed', 'password'],
+        },
+        include: [{ 
+          model: Order, 
+          attributes: ['order_num'],
+          include: [{
+            model: Product,
+            attributes: ['product','price'],
+            through:{attributes: []} }]}],
       });
       res.status(201).send({ mensaje: 'Show Users with Orders', usersOrders });
     } catch (error) {
