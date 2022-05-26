@@ -1,4 +1,4 @@
-const {Product, Order, Category, Section, Order_Product} = require('../models/index');
+const {Product, Order, Category, Section} = require('../models/index');
 
 //-----> Controlador para tabla "Product" <------// 
 
@@ -6,13 +6,10 @@ const {Product, Order, Category, Section, Order_Product} = require('../models/in
 const ProductController = {
     async create(req,res,next) {
     try {
-      if (req.body.product === !null || req.body.price === !null || req.body.SectionId === !null || req.body.CategoryId === !null || req.body.OrderId){
-        const product = await Product.create({...req.body})
+      if (req.file)req.body.image_path = req.file.filename;                
+      const product = await Product.create({...req.body})
         product.addOrder(req.body.OrderId)        
-        res.status(201).send({message: "Product added...", product})
-      } else {
-        res.status(401).send({message: "Please fill all the fields..."})
-      }
+        res.status(201).send({message: "Product added...", product})      
     } catch (error) {
        error.origin = 'Product'
        next(error)
