@@ -1,6 +1,10 @@
 # About The Project -
 
-## Javascript Quiz Single Web App
+The backend project will combine the knowledge acquired in the following technologies [node + express] technologies, as well as mysql/sequelize.
+
+The project will consist of an online shop (e-commerce) for devices (phones, tablets, computers and wearables).
+
+## Online Shop
 
 Javascript Quiz built with HTML, CSS & JS.
 
@@ -20,9 +24,20 @@ Third Section -> Show Results
 
 _This Project was developed with the following technologies_
 
-- HTML
-- CSS
-- JS
+- JavaScript
+- Dependencies: mySql2, Express, Sequelize, Nodemon, Nodemailer, Multer, Jsonwebtoken, Bcryptjs
+- Postman
+- Trello
+
+## Action Route
+
+1. Modelling the Online Shop's Diagram:
+
+- Table Users.
+- Table Orders.
+- Table Reviews.
+- Table Products.
+- Section Table
 
 ## Challenges
 
@@ -114,10 +129,10 @@ https://github.com/Vincecoorp21/QuizApp
 
 ## Author
 
+👤 **Germán Molero**
 👤 **Vince BC**
-👤 **Santiago Guevara**
 
-- GitHub: [@Santiremix](https://github.com/Santiremix)
+- GitHub: [@Molerog](https://github.com/Molerog)
 - Github: [@Vincecoorp21](https://github.com/Vincecoorp21)
 
-This project was developed By [Santiago Guevara](https://github.com/Santiremix) & [Vicente Barberá - Vince BC -](https://github.com/Vincecoorp21)
+This project was developed By [Germán Molero](https://github.com/Molerog) & [Vicente Barberá - Vince BC -](https://github.com/Vincecoorp21)
