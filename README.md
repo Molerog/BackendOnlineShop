@@ -31,7 +31,7 @@ _This Project was developed with the following technologies_
 
 ## Action Route
 
-1. Modelling the Online Shop's Diagram:
+1. Modelling the Online Shop Diagram (fig1).
 
 - Table Users.
 - Table Orders.
@@ -39,13 +39,21 @@ _This Project was developed with the following technologies_
 - Table Products.
 - Section Table
 
+2. Defining tasks in Trello.
+
+3. Building relations with Sequelize, it's important to review the [Sequelize Documentation](https://sequelize.org/docs/v6/getting-started/).
+
+4. Working On Endpoints.
+
+5. Adding field validations.
+
+6. Implementing user registration with confirmation via email. We need to use [Multer Documentation](https://www.npmjs.com/package/multer).
+
 ## Challenges
 
 We have found several challenges during the project...
 
-1. Import Data from [Open Trivia API]('https://opentdb.com/api.php?amount=10&category=31&difficulty=medium&type=multiple').
-
-In this case we use Fetch & async function to do...You can know more about Fetch in that post from [Dmitry Pavlutin](https://dmitripavlutin.com/javascript-fetch-async-await/)
+1. Many to Many relationship.
 
 ```
 # code block
@@ -118,7 +126,7 @@ function congrats() {
 To deploy this project you must clone the repository through the following link:
 
 ```
-https://github.com/Vincecoorp21/QuizApp
+https://github.com/Molerog/BackendOnlineShop
 ```
 
 #### Preview
