@@ -72,7 +72,7 @@ const ProductController = {
       },
 //-----Elimina los productos por ID-----//
       async deleteProduct(req,res,next) {
-        try {
+        try {       
             await Product.destroy({
             where:{
               id:req.params.id

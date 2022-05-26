@@ -22,7 +22,7 @@ module.exports = {
         email:'diacono@gmail.com',
         dni: '33449923Y', 
         role: 'user',
-        confirmed:true,
+        confirmed:false,
         password: bcrypt.hashSync('padrenostrum', 10),       
         createdAt: new Date(),
         updatedAt: new Date()   
