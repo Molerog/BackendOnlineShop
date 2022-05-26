@@ -78,7 +78,10 @@ const UserController = {
   //-----Obtiene todos los usuarios-----//
   async getAll(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({
+        attributes: {exclude: ['createdAt','updatedAt','confirmed']},
+      });
+   
       res.status(201).send({ mensaje: 'Search completed...', users });
     } catch (error) {
       console.log(error);
