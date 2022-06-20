@@ -17,14 +17,14 @@ const UserController = {
           confirmed:false,
           role:'user'          
          });
-         const url ='http://localhost:3000/users/confirm/'+ req.body.email
-         await transporter.sendMail({
-          to: req.body.email,
-          subject: "Confirme su registro",
-          html: `<h3>Bienvenido, estás a un paso de registrarte </h3>
-          <a href="${url}"> Click para confirmar tu registro</a>
-          `
-        });
+        //  const url ='http://localhost:3000/users/confirm/'+ req.body.email
+        //  await transporter.sendMail({
+        //   to: req.body.email,
+        //   subject: "Confirme su registro",
+        //   html: `<h3>Bienvenido, estás a un paso de registrarte </h3>
+        //   <a href="${url}"> Click para confirmar tu registro</a>
+        //   `
+        // });
         res.status(201).send({ message: 'We sent you an email to confirm your register...', user });
     } catch (error) { 
       error.origin = "User"
