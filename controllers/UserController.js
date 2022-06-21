@@ -14,7 +14,7 @@ const UserController = {
           attributes: {exclude: ['createdAt','updatedAt','confirmed']},
           ...req.body,
           password : hash,
-          confirmed:false,
+          confirmed:true,
           role:'user'          
          });
         //  const url ='http://localhost:3000/users/confirm/'+ req.body.email
@@ -133,7 +133,28 @@ const UserController = {
       error.origin = 'User'
       next(error)
     }
-  }
+  },
+  async getUserInfo(req, res) {
+    try {
+      const user = await User.findOne({
+        // attributes: {exclude: ['createdAt','updatedAt','confirmed']},
+        where: {
+          id: req.user.id,
+        },
+      });
+      if (!user) {
+        return res
+          .status(400)
+          .send({ message: 'User or Password incorrect', user });
+      }
+      res.status(201).send({ message: 'User find', user });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .send({ message: 'We had an issue searching the user...' });
+    }
+  },
 };
 
 module.exports = UserController;

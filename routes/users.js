@@ -9,6 +9,7 @@ router.get('/userorder', authentication, isAdmin, UserController.getUserOrderPro
 router.post('/login', UserController.login);
 router.get('/confirm/:email',UserController.confirm)
 router.delete('/logout', authentication, UserController.logout);
+router.get('/info', authentication, UserController.getUserInfo);
 
 
 module.exports = router;
