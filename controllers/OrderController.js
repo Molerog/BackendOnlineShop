@@ -70,9 +70,9 @@ const OrderController = {
   async getOrdersByUserId(req, res) {
     try {
       const users = await User.findAll({
-        include: [{ model: Order, through: { attributes: []} }],
+        // include: [{ model: Order, through: { attributes: []} }],
         where: {
-          id:req.params.id,
+          id:req.user.id
         }
       });
       res.send(users);
