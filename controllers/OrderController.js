@@ -13,7 +13,7 @@ const { Order, User, Product, Section, Order_Product } = require('../models/inde
           createdAt: new Date(),
         };
         const order = await Order.create(newOrder);
-        req.body.productIds.forEach(async productId => {
+        req.body.ProductId.forEach(async productId => {
           await Order_Product.create({ ProductId: productId, OrderId: order.id });
         });
         res.status(201).send({ message: 'order added...', order });
