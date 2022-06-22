@@ -66,6 +66,25 @@ const OrderController = {
         .send({ message: ' We had a problem looking for relations' });
     }
   },
+
+  async getOrdersByUserId(req, res) {
+    try {
+      const users = await User.findAll({
+        include: [{ model: Order, through: { attributes: []} }],
+        where: {
+          id:req.params.id,
+        }
+      });
+      res.send(users);
+    } catch {
+      (err) => {
+        console.log(err);
+        res.status(500).send({
+          message: "Ha habido un problema al cargar los pedidos de este usuario"
+        })
+      }
+    }
+  }
 };
 
 module.exports = OrderController;

@@ -7,6 +7,7 @@ router.post('/',authentication, OrderController.create);
 router.get('/', OrderController.getAllOrder);
 router.get('/orderuser', OrderController.getOrderUser);
 router.get('/orderproducts',OrderController.getOrderProduct);
+router.get('/orderByUserId', authentication, OrderController.getOrderByUser);
 
 
 module.exports = router             
