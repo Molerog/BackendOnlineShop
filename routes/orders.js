@@ -5,7 +5,7 @@ const {authentication, isAdmin} = require('../middleware/authentication');
 
 router.post('/',authentication, OrderController.create);
 router.get('/', OrderController.getAllOrder);
-router.get('/orderuser', OrderController.getOrderUser);
+router.get('/orderuser',authentication, OrderController.getOrderUser);
 router.get('/orderproducts',OrderController.getOrderProduct);
 
 

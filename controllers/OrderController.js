@@ -27,7 +27,10 @@ const { Order, User, Product, Section, Order_Product } = require('../models/inde
   async getOrderUser(req, res) {
     try {
       const orderUsers = await Order.findAll({
-        include: [User],
+        where:{
+          id:req.user.id
+        },
+        // include: [User],
       });
       res.status(201).send({ mensaje: 'Show Orders with Users', orderUsers });
     } catch (error) {
