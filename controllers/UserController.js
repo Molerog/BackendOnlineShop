@@ -141,6 +141,18 @@ const UserController = {
         where: {
           id: req.user.id,
         },
+        include: [{ 
+          model: Order, 
+          attributes: ['order_num','date'],
+          include: [{
+            model: Product,
+            attributes: ['product','price'],
+            through:{attributes: []
+            }
+          }
+        ]
+      }
+    ],
       });
       if (!user) {
         return res
