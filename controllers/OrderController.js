@@ -7,14 +7,19 @@ const { Order, User, Product, Section, Order_Product } = require('../models/inde
     async create(req, res, next) {
       try {
         const newOrder = {
+          ...req.body,
+          cantidad: req.body.ProductId.length,
           UserId: req.user.id,
           date: new Date(),
           updatedAt: new Date(),
           createdAt: new Date(),
         };
         const order = await Order.create(newOrder);
+        console.log(req.body)
         req.body.ProductId.forEach(async productId => {
-          await Order_Product.create({ ProductId: productId, OrderId: order.id });
+          await Order_Product.create(
+            { ProductId: productId, OrderId: order.id }
+            );
         });
         res.status(201).send({ message: 'order added...', order });
       } catch (error) {
