@@ -8,6 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      band:{
+        type: Sequelize.STRING
+      },
+      image:{
+        type: Sequelize.STRING
+      },
       product: {
         type: Sequelize.STRING
       },

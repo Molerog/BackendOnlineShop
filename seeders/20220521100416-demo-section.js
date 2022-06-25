@@ -4,22 +4,17 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Sections', [
       {
-        section: 'Mobile',
+        section: 'Rock',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        section: 'Tablet',
+        section: 'New-wave',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        section: 'Wearable',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
-        section: 'Laptops',
+        section: 'Alternative',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

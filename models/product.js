@@ -15,6 +15,15 @@ module.exports = (sequelize, DataTypes) => {
   }
   Product.init(
     {
+      band: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: 'Please insert a valid Band',
+          },
+        }, 
+      },
       product: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -23,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'Please insert a valid Product',
           },
         },
+      },
+      image:{
+        type: DataTypes.STRING,
+        allowNull:false,
       },
       price: {
         type: DataTypes.FLOAT,

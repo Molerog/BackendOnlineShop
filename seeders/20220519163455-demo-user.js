@@ -17,6 +17,28 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        name: 'Rebeca',
+        surname: 'Suesta',
+        email:'rebeca@gmail.com',
+        dni: '35603865A',  
+        role: 'admin',
+        password: bcrypt.hashSync('rebeca', 10),
+        confirmed: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Oriol',
+        surname: 'Suesta',
+        email:'oriol@gmail.com',
+        dni: '35603865A',  
+        role: 'admin',
+        password: bcrypt.hashSync('oriol', 10),
+        confirmed: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         name: 'Xavi',
         surname: 'PaterandCommander',
         email:'diacono@gmail.com',

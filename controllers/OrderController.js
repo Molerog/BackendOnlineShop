@@ -8,7 +8,6 @@ const { Order, User, Product, Section, Order_Product } = require('../models/inde
       try {
         const newOrder = {
           ...req.body,
-          cantidad: req.body.ProductId.length,
           UserId: req.user.id,
           date: new Date(),
           updatedAt: new Date(),
@@ -18,7 +17,7 @@ const { Order, User, Product, Section, Order_Product } = require('../models/inde
         console.log(req.body)
         req.body.ProductId.forEach(async productId => {
           await Order_Product.create(
-            { ProductId: productId, OrderId: order.id }
+            { ProductId: productId, OrderId: order.id, Cantidad: req.body.ProductId.length }
             );
         });
         res.status(201).send({ message: 'order added...', order });
